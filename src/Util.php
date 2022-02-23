@@ -19,13 +19,32 @@ class Util
      * 
      * @param string $folder 文件夹名称
      * @param string $name 文件名称
+     * @param string $ext 文件扩展名
      * @return array
      */
-    public function load($folder, $name)
+    public function load($folder, $name, $ext = 'php')
     {
-        $filename = __DIR__ . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $name . '.php';
+        $filename = __DIR__ . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $name . '.' . $ext;
         if (is_file($filename)) {
             return include($filename);
+        }
+
+        return array();
+    }
+
+    /**
+     * 获取相关内容
+     * 
+     * @param string $folder 文件夹名称
+     * @param string $name 文件名称
+     * @param string $ext 文件扩展名
+     * @return mixed
+     */
+    public function get($folder, $name, $ext = 'php')
+    {
+        $filename = __DIR__ . DIRECTORY_SEPARATOR . $folder . DIRECTORY_SEPARATOR . $name . '.' . $ext;
+        if (is_file($filename)) {
+            return file_get_contents($filename);
         }
 
         return array();
