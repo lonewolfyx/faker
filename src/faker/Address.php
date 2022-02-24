@@ -33,10 +33,10 @@ class Address extends Base
         $random = rand(0, ($total - 1));
 
         if ($region_code) {
-            return $regions[$random];
+            return $this->util->array_random($regions);
         }
 
-        return $regions[$random]['name'];
+        return $this->util->array_random($regions)['name'];
     }
 
     /**
@@ -142,7 +142,7 @@ class Address extends Base
     public function stateAbbr()
     {
         $stats = array('京', '沪', '津', '渝', '黑', '吉', '辽', '蒙', '冀', '新', '甘', '青', '陕', '宁', '豫', '鲁', '晋', '皖', '鄂', '湘', '苏', '川', '黔', '滇', '桂', '藏', '浙', '赣', '粤', '闽', '台', '琼', '港', '澳');
-        return $stats[rand(0, 33)];
+        return $this->util->array_random($stats);
     }
 
     /**
@@ -358,6 +358,6 @@ class Address extends Base
             'Pacific/Fakaofo',
             'Pacific/Apia'
         );
-        return $time_zone[rand(0, 142)];
+        return $this->util->array_random($time_zone);
     }
 }
